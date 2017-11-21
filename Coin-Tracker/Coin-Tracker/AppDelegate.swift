@@ -16,7 +16,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let seperator = NSMenuItem.separator()
     let placeholderItem = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     var coinMenuItems = [NSMenuItem]()
-    
+    let currencyMenu = NSMenu(title: "Currency")
+    let cadMenuItem = NSMenuItem(title: "CAD", action: #selector(changeCurrency(_:)), keyEquivalent: "CAD")
+    let usdMenuItem = NSMenuItem(title: "USD", action: #selector(changeCurrency(_:)), keyEquivalent: "USD")
+    let eurMenuItem = NSMenuItem(title: "EUR", action: #selector(changeCurrency(_:)), keyEquivalent: "EUR")
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setupMenu()
         NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
@@ -25,28 +29,51 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }
-    
-    @objc func openPreferences() {
-//        let vc = PreferencesViewController(nibName: NSNib.Name.init(rawValue: "PreferencesViewController"), bundle: Bundle.main)
-//        let window = NSWindow(contentViewController: vc)
-//        window.makeKey()
-    }
-    
+
     @objc func quitApplication() {
         NSApplication.shared.terminate(nil)
     }
     
     private func setupMenu() {
         statusItem.button?.image = NSImage(named: NSImage.Name.menuIcon)
+        
+        let currencyMenuItem = NSMenuItem(title: "Currencies", action: nil, keyEquivalent: "")
         statusItem.menu = {
             let menu = NSMenu()
             menu.addItem(self.placeholderItem)
             menu.addItem(self.seperator)
-            menu.addItem(NSMenuItem(title: "Preferences...", action: #selector(openPreferences), keyEquivalent: "preferences"))
+            
+            // Remove later when preferences implementation complete
+            menu.addItem(currencyMenuItem)
+            menu.setSubmenu(currencyMenu, for: currencyMenuItem)
+            
+//            menu.addItem(NSMenuItem(title: "Preferences...", action: #selector(openPreferences), keyEquivalent: "preferences"))
             menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApplication), keyEquivalent: "quit"))
             menu.delegate = NSApplication.shared.delegate as! AppDelegate
+    
             return menu
         }()
+        
+        for item in [usdMenuItem, cadMenuItem, eurMenuItem] {
+            currencyMenu.addItem(item)
+        }
+        currencyMenu.delegate = self
+        statusItem.menu?.setSubmenu(currencyMenu, for: currencyMenuItem)
+    }
+    
+    @objc func changeCurrency(_ sender: Any?) {
+        guard let chosenCurrency = sender as? NSMenuItem else { return }
+        
+        switch chosenCurrency {
+        case cadMenuItem:
+            CoinTracker.sharedInstance.currency = .cad
+        case usdMenuItem:
+            CoinTracker.sharedInstance.currency = .usd
+        case eurMenuItem:
+            CoinTracker.sharedInstance.currency = .euro
+        default:
+            break
+        }
     }
 }
 
@@ -58,6 +85,7 @@ extension AppDelegate: NSMenuDelegate {
     }
     
     private func refresh(menu: NSMenu) {
+        guard menu != self.currencyMenu else { return }
         DispatchQueue.main.async {
             if menu.items.contains(self.placeholderItem) {
                 menu.removeItem(self.placeholderItem)
@@ -68,13 +96,12 @@ extension AppDelegate: NSMenuDelegate {
             }
         }
         
-        
-        CoinAPI.getCoins(currency: .usd) { coins in
+        CoinAPI.getCoins(currency: CoinTracker.sharedInstance.currency) { coins in
             let filteredCoins = coins.filter { coin in
                 return Symbol.all.map{$0.rawValue}.contains(coin.symbol)
             }
             
-            self.coinMenuItems = filteredCoins.map{NSMenuItem(title: "\($0.symbol) - $\($0.priceUSD!)", action: nil, keyEquivalent: "")}
+            self.coinMenuItems = filteredCoins.map{ NSMenuItem(title: "\($0.symbol) - $\($0.price(for: CoinTracker.sharedInstance.currency)!)", action: nil, keyEquivalent: "")}
             
             let seperatorIndex = menu.index(of: self.seperator)
             for item in self.coinMenuItems.reversed() {

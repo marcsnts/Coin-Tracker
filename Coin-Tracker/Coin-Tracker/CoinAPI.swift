@@ -40,7 +40,20 @@ class CoinAPI {
                 return
             }
             
-            completion(coins)
+            let roundedPrice: (String?) -> String? = { price in
+                guard let price = price else { return nil }
+                return Double(price)?.roundedString
+            }
+            
+            let roundedCoins = coins.map { coin -> Coin in
+                var newCoin = coin.makeCopy()
+                newCoin.priceCAD = roundedPrice(coin.priceCAD)
+                newCoin.priceUSD = roundedPrice(coin.priceUSD)
+                newCoin.priceEUR = roundedPrice(coin.priceEUR)
+                return newCoin
+            }
+            
+            completion(roundedCoins)
         }.resume()
     }
 }

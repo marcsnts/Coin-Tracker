@@ -22,3 +22,9 @@ extension NSTouchBarItem.Identifier {
 extension NSTouchBar.CustomizationIdentifier {
     static let coinTrackerBar = NSTouchBar.CustomizationIdentifier("com.marcsantos.CoinTrackerTouchBar")
 }
+
+extension Double {
+    var roundedString: String {
+        return String(format: "%.2f", self)
+    }
+}
