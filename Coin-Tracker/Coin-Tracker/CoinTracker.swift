@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+class CoinTracker {
+    static let sharedInstance = CoinTracker()
+    var coins: [Coin]
+    var currency: Currency
+    
+    private init() {
+        self.coins = [Coin]()
+        self.currency = Currency.usd
+    }
+}
+

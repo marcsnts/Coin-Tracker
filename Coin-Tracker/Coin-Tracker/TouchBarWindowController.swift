@@ -9,11 +9,34 @@
 import Cocoa
 
 class TouchBarWindowController: NSWindowController {
-
+    
     override func windowDidLoad() {
         super.windowDidLoad()
+    }
+}
 
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+extension TouchBarWindowController: NSTouchBarDelegate {
+    override func makeTouchBar() -> NSTouchBar? {
+        let touchBar = NSTouchBar()
+        touchBar.delegate = self
+        touchBar.customizationIdentifier = NSTouchBar.CustomizationIdentifier.coinTrackerBar
+        touchBar.defaultItemIdentifiers = [.bitcoinItem, .ethereumItem, .dashItem]
+        
+        return touchBar
     }
     
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
+        let item = NSCustomTouchBarItem(identifier: identifier)
+        
+        switch identifier {
+        case NSTouchBarItem.Identifier.bitcoinItem:
+            item.view = NSTextField(labelWithString: "Bitcoin")
+        case NSTouchBarItem.Identifier.ethereumItem:
+            item.view = NSTextField(labelWithString: "Ethereum")
+        default:
+            item.view = NSTextField(labelWithString: "Default")
+        }
+        
+        return item
+    }
 }

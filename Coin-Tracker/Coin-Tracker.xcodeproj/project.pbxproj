@@ -13,6 +13,13 @@
 		49E7EC671FC4947E003EE5EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49E7EC651FC4947E003EE5EB /* Main.storyboard */; };
 		49E7EC731FC4947E003EE5EB /* Coin_TrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC721FC4947E003EE5EB /* Coin_TrackerTests.swift */; };
 		49E7EC7E1FC4947E003EE5EB /* Coin_TrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC7D1FC4947E003EE5EB /* Coin_TrackerUITests.swift */; };
+		49E7EC8C1FC494C3003EE5EB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC8B1FC494C3003EE5EB /* Extensions.swift */; };
+		49E7EC8E1FC494DD003EE5EB /* CoinTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC8D1FC494DD003EE5EB /* CoinTracker.swift */; };
+		49E7EC901FC494E5003EE5EB /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC8F1FC494E5003EE5EB /* Currency.swift */; };
+		49E7EC921FC494F5003EE5EB /* CoinAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC911FC494F5003EE5EB /* CoinAPI.swift */; };
+		49E7EC941FC49507003EE5EB /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC931FC49507003EE5EB /* Coin.swift */; };
+		49E7EC971FC49573003EE5EB /* TouchBarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC951FC49573003EE5EB /* TouchBarWindowController.swift */; };
+		49E7EC981FC49573003EE5EB /* TouchBarWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E7EC961FC49573003EE5EB /* TouchBarWindowController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +53,13 @@
 		49E7EC791FC4947E003EE5EB /* Coin-TrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Coin-TrackerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49E7EC7D1FC4947E003EE5EB /* Coin_TrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin_TrackerUITests.swift; sourceTree = "<group>"; };
 		49E7EC7F1FC4947E003EE5EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49E7EC8B1FC494C3003EE5EB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		49E7EC8D1FC494DD003EE5EB /* CoinTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTracker.swift; sourceTree = "<group>"; };
+		49E7EC8F1FC494E5003EE5EB /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
+		49E7EC911FC494F5003EE5EB /* CoinAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinAPI.swift; sourceTree = "<group>"; };
+		49E7EC931FC49507003EE5EB /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		49E7EC951FC49573003EE5EB /* TouchBarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarWindowController.swift; sourceTree = "<group>"; };
+		49E7EC961FC49573003EE5EB /* TouchBarWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchBarWindowController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +116,13 @@
 				49E7EC651FC4947E003EE5EB /* Main.storyboard */,
 				49E7EC681FC4947E003EE5EB /* Info.plist */,
 				49E7EC691FC4947E003EE5EB /* Coin_Tracker.entitlements */,
+				49E7EC8B1FC494C3003EE5EB /* Extensions.swift */,
+				49E7EC8D1FC494DD003EE5EB /* CoinTracker.swift */,
+				49E7EC8F1FC494E5003EE5EB /* Currency.swift */,
+				49E7EC911FC494F5003EE5EB /* CoinAPI.swift */,
+				49E7EC931FC49507003EE5EB /* Coin.swift */,
+				49E7EC951FC49573003EE5EB /* TouchBarWindowController.swift */,
+				49E7EC961FC49573003EE5EB /* TouchBarWindowController.xib */,
 			);
 			path = "Coin-Tracker";
 			sourceTree = "<group>";
@@ -231,6 +252,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49E7EC981FC49573003EE5EB /* TouchBarWindowController.xib in Resources */,
 				49E7EC641FC4947E003EE5EB /* Assets.xcassets in Resources */,
 				49E7EC671FC4947E003EE5EB /* Main.storyboard in Resources */,
 			);
@@ -258,7 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				49E7EC621FC4947E003EE5EB /* ViewController.swift in Sources */,
+				49E7EC921FC494F5003EE5EB /* CoinAPI.swift in Sources */,
+				49E7EC901FC494E5003EE5EB /* Currency.swift in Sources */,
+				49E7EC8E1FC494DD003EE5EB /* CoinTracker.swift in Sources */,
+				49E7EC8C1FC494C3003EE5EB /* Extensions.swift in Sources */,
+				49E7EC971FC49573003EE5EB /* TouchBarWindowController.swift in Sources */,
 				49E7EC601FC4947E003EE5EB /* AppDelegate.swift in Sources */,
+				49E7EC941FC49507003EE5EB /* Coin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,7 +443,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Coin-Tracker/Coin_Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q7Q9H5422D;
@@ -431,7 +458,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Coin-Tracker/Coin_Tracker.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q7Q9H5422D;

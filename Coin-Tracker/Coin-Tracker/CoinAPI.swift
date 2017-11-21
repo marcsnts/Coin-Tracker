@@ -7,3 +7,40 @@
 //
 
 import Foundation
+
+class CoinAPI {
+    static func getCoins(currency: Currency, completion: @escaping (([Coin]) ->Void)) {
+        let urlComponents: URLComponents = {
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = "api.coinmarketcap.com"
+            components.path = "/v1/ticker/"
+            let query = URLQueryItem(name: "convert", value: currency.rawValue)
+            components.queryItems = [query]
+            return components
+        }()
+        
+        guard let url = urlComponents.url else {
+            print("GET coins failed url could not be created")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession(configuration: .default).dataTask(with: request) { responseData, response, responseError in
+            guard let jsonData = responseData else {
+                if let error = responseError {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            guard let coins = try? JSONDecoder().decode(Array<Coin>.self, from: jsonData) else {
+                print("Could not decode json response")
+                return
+            }
+            
+            completion(coins)
+        }.resume()
+    }
+}
