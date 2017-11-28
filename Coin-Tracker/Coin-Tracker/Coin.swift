@@ -14,6 +14,7 @@ struct Coin: Codable {
     var priceCAD: String?
     var priceEUR: String?
     var priceUSD: String?
+    var isPriceUp: Bool?
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -21,6 +22,7 @@ struct Coin: Codable {
         case priceCAD = "price_cad"
         case priceEUR = "price_eur"
         case priceUSD = "price_usd"
+        case isPriceUp = "non-existant"
     }
     
     func price(for currency: Currency) -> String? {
@@ -35,7 +37,24 @@ struct Coin: Codable {
     }
     
     func makeCopy() -> Coin {
-        return Coin(name: self.name, symbol: self.symbol, priceCAD: self.priceCAD, priceEUR: self.priceEUR, priceUSD: self.priceUSD)
+        return Coin(name: self.name, symbol: self.symbol, priceCAD: self.priceCAD, priceEUR: self.priceEUR, priceUSD: self.priceUSD, isPriceUp: self.isPriceUp)
+    }
+    
+    func isPriceGreaterThan(_ coin: Coin) -> Bool? {
+        guard let ourPriceString = self.price(for: CoinTracker.sharedInstance.currency) else {
+            print("Comparing coins failed, could not retrieve price for our coin")
+            return nil
+        }
+        guard let otherPriceString = self.price(for: CoinTracker.sharedInstance.currency) else {
+            print("Comparing coins failed, could not retrieve price for the other coin")
+            return nil
+        }
+        guard let ourPrice = Double(ourPriceString), let otherPrice = Double(otherPriceString) else {
+            print("Failed to convert strings to doubles when comparing prices: \(ourPriceString) and \(otherPriceString)")
+            return nil
+        }
+        
+        return ourPrice > otherPrice
     }
 }
 

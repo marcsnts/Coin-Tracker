@@ -20,6 +20,7 @@
 		49E7EC941FC49507003EE5EB /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC931FC49507003EE5EB /* Coin.swift */; };
 		49E7EC971FC49573003EE5EB /* TouchBarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC951FC49573003EE5EB /* TouchBarWindowController.swift */; };
 		49E7EC981FC49573003EE5EB /* TouchBarWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49E7EC961FC49573003EE5EB /* TouchBarWindowController.xib */; };
+		49E7EC9C1FC77333003EE5EB /* CoinMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7EC9B1FC77333003EE5EB /* CoinMenuItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		49E7EC931FC49507003EE5EB /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		49E7EC951FC49573003EE5EB /* TouchBarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarWindowController.swift; sourceTree = "<group>"; };
 		49E7EC961FC49573003EE5EB /* TouchBarWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TouchBarWindowController.xib; sourceTree = "<group>"; };
+		49E7EC9B1FC77333003EE5EB /* CoinMenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMenuItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				49E7EC931FC49507003EE5EB /* Coin.swift */,
 				49E7EC951FC49573003EE5EB /* TouchBarWindowController.swift */,
 				49E7EC961FC49573003EE5EB /* TouchBarWindowController.xib */,
+				49E7EC9B1FC77333003EE5EB /* CoinMenuItem.swift */,
 			);
 			path = "Coin-Tracker";
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				49E7EC901FC494E5003EE5EB /* Currency.swift in Sources */,
 				49E7EC8E1FC494DD003EE5EB /* CoinTracker.swift in Sources */,
 				49E7EC8C1FC494C3003EE5EB /* Extensions.swift in Sources */,
+				49E7EC9C1FC77333003EE5EB /* CoinMenuItem.swift in Sources */,
 				49E7EC971FC49573003EE5EB /* TouchBarWindowController.swift in Sources */,
 				49E7EC601FC4947E003EE5EB /* AppDelegate.swift in Sources */,
 				49E7EC941FC49507003EE5EB /* Coin.swift in Sources */,
